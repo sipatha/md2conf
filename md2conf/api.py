@@ -53,10 +53,10 @@ class RetryAdapter(HTTPAdapter):
     def __init__(self) -> None:
         # spellchecker: disable
         self._retry_rate_limit = Retry(
-            total=3, allowed_methods=["GET", "POST", "PUT", "DELETE"], status_forcelist=[429], backoff_factor=1, raise_on_redirect=False, raise_on_status=False
+            total=10, allowed_methods=["GET", "POST", "PUT", "DELETE"], status_forcelist=[429], backoff_factor=1, raise_on_redirect=False, raise_on_status=False
         )
         self._retry_eventual_consistency = Retry(
-            total=3, allowed_methods=["GET"], status_forcelist=[404, 429], backoff_factor=1, raise_on_redirect=False, raise_on_status=False
+            total=10, allowed_methods=["GET"], status_forcelist=[404, 429], backoff_factor=1, raise_on_redirect=False, raise_on_status=False
         )
         # spellchecker: enable
         super().__init__()
